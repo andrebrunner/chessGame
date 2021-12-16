@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ChessgameComponent } from './chessgame/chessgame.component';
+import { GameListComponent } from './game-list/game-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChessgameComponent
+    ChessgameComponent,
+    GameListComponent
   ],
   imports: [
     BrowserModule
