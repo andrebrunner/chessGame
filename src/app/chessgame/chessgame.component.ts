@@ -9,15 +9,19 @@ import {SingleGame} from "../single-game";
 })
 export class ChessgameComponent implements OnInit {
 
-  games : SingleGame[] = [];
-  gameOne : SingleGame = new SingleGame("", "", 1);
+  myGameService: ChessGameServiceService;
+  game : SingleGame = new SingleGame("", "", 0);
 
   constructor(private cg: ChessGameServiceService) {
-    this.games = cg.getGames();
+    this.myGameService = cg;
   }
 
   ngOnInit(): void {
-    this.gameOne = this.games[0];
+    this.myGameService
+      .informSelectedGame
+      .subscribe(selectedGame => {
+        this.game = selectedGame;
+      });
   }
 
 

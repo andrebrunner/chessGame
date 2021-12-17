@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ChessGameServiceService} from "../chess-game-service.service";
 import {SingleGame} from "../single-game";
 
@@ -11,13 +11,23 @@ export class GameListComponent implements OnInit {
 
    games : SingleGame[] = [];
 
-  constructor(private cg: ChessGameServiceService) {
+   myGameService: ChessGameServiceService;
 
-    this.games = cg.getGames();
+
+
+
+  constructor(private cg: ChessGameServiceService) {
+    this.myGameService = cg;
+    this.games = this.myGameService.getGames();
   }
 
   ngOnInit(): void {
 
+  }
+
+  onSelect(game:SingleGame) {
+    this.myGameService.setSelectedGame(game);
+    console.log(game);
   }
 
 }

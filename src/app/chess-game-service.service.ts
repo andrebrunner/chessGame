@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {SingleGame} from "./single-game";
 
 @Injectable({
@@ -7,6 +7,9 @@ import {SingleGame} from "./single-game";
 export class ChessGameServiceService {
 
   private games : SingleGame[] = [];
+  private selectedGame : SingleGame = new SingleGame("", "", 0);
+
+  @Output() informSelectedGame = new EventEmitter<SingleGame>();
 
   constructor() {
     this.initGames();
@@ -26,5 +29,9 @@ export class ChessGameServiceService {
     return this.games;
   }
 
+  public setSelectedGame(game:SingleGame) {
+    this.selectedGame = game;
+    this.informSelectedGame.emit(this.selectedGame);
+  }
 
 }
